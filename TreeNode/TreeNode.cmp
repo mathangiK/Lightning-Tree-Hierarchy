@@ -1,0 +1,24 @@
+<aura:component >
+	<aura:attribute name="node" type="Object" />
+    <aura:attribute name="expanded" type="Boolean" default="false" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="iconCode" type="String" /> 
+	
+   	<li id="tree0-node0" role="treeitem" aria-level="1">
+      <div class="slds-tree__item">
+        <aura:if isTrue="{!v.node.items.length>0}">
+            <div onclick="{!c.toggle}">
+                {!v.iconCode} 
+	   		</div>
+        </aura:if>     
+            <a href="javascript:void(0);" tabindex="-1" role="presentation" class="slds-truncate" title="Tree Item">
+                {!v.node.Name}
+                <aura:if isTrue="{!v.expanded}">
+                    <aura:iteration items="{!v.node.items}" var="node">
+                        <c:TreeNode node="{!node}" />
+                    </aura:iteration>  
+                </aura:if>
+            </a>  
+      </div>
+    </li>
+</aura:component>
