@@ -10,7 +10,8 @@
                     roles[v.Id] = { Name: v.Name, items: [] };
                 });
                 results.forEach(function(v) {
-                    roles[v.ParentProduct__c].items.push(roles[v.Id]);
+                    var parentFieldName = "ParentProduct__c";
+                    roles[v[parentFieldName]].items.push(roles[v.Id]);
                 });
                 component.set("v.nodes", roles[undefined].items);
             } else {
